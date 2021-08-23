@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-cadastro-usuario',
+  templateUrl: './cadastro-usuario.component.html',
+  styleUrls: ['./cadastro-usuario.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class CadastroUsuarioComponent implements OnInit {
 
   loginForm = this.fb.group({
     username: [null],

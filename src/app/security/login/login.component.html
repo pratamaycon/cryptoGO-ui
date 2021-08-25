@@ -2,9 +2,9 @@
   <div class="login-content">
     <mat-card class="card-content">
       <h1>Login</h1>
-      <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+      <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="autenticar()">
         <mat-form-field appearance="outline">
-          <mat-label>Standard form field</mat-label>
+          <mat-label>Usuário</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
           <input
             autofocus
@@ -16,7 +16,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Standard form field</mat-label>
+          <mat-label>Senha</mat-label>
           <mat-icon matPrefix>lock_outline</mat-icon>
           <input
             type="password"

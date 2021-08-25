@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginModule } from './auth/login/login.module';
-import { CadastroUsuarioComponent } from './auth/cadastro-usuario/cadastro-usuario.component';
+import { AppRoutingModule } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,10 @@ import { CadastroUsuarioComponent } from './auth/cadastro-usuario/cadastro-usuar
   ],
   imports: [
     BrowserModule,
-    LoginModule,
-    BrowserAnimationsModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

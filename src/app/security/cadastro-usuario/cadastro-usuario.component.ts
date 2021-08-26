@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -8,17 +11,33 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CadastroUsuarioComponent implements OnInit {
 
-  loginForm = this.fb.group({
-    username: [null],
-    password: [null]
-  });
+  public loginForm!: FormGroup;
+  public loading = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-
+    this.loginForm = this.fb.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      login: ['', Validators.required],
+      senha: ['', Validators.required],
+      email: ['', Validators.required]
+    });
   }
 
-  onSubmit() {}
+  cadastrar() {
+    const { nome, sobrenome, login, senha, email } = this.loginForm.controls
+    this.usuarioService.
+    adicionar(
+      new Usuario(nome.value, sobrenome.value, login.value, senha.value, email.value)
+    ).subscribe((_) => {
+      this.router.navigate(['/dashboard']);
+    })
+  }
 
 }

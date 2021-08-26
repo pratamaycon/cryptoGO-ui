@@ -2,7 +2,7 @@
   <div class="login-content">
     <mat-card class="card-content">
       <h1>Cadastro</h1>
-      <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+      <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="cadastrar()">
         <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
@@ -10,31 +10,31 @@
             autofocus
             type="text"
             matInput
-            placeholder="Username"
-            formControlName="username"
+            placeholder="Nome"
+            formControlName="nome"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Sobrenome</mat-label>
-          <mat-icon matPrefix>lock_outline</mat-icon>
+          <mat-icon matPrefix>person_outline</mat-icon>
           <input
-            type="password"
+            type="text"
             autocomplete="false"
             matInput
-            placeholder="Password"
-            formControlName="password"
+            placeholder="Sobrenome"
+            formControlName="sobrenome"
           />
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Usuário</mat-label>
+          <mat-label>Login</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
           <input
             autofocus
             type="text"
             matInput
-            placeholder="Username"
-            formControlName="username"
+            placeholder="Login"
+            formControlName="login"
           />
         </mat-form-field>
 
@@ -46,29 +46,29 @@
             autocomplete="false"
             matInput
             placeholder="Password"
-            formControlName="password"
+            formControlName="senha"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <mat-icon matPrefix>lock_outline</mat-icon>
+          <mat-icon matPrefix>mail_outline</mat-icon>
           <input
-            type="password"
+            type="text"
             autocomplete="false"
             matInput
-            placeholder="Password"
-            formControlName="password"
+            placeholder="E-mail"
+            formControlName="email"
           />
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="primary">
+        <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">
           Cadastrar
         </button>
       </form>
       <p class="link">
         Já possui cadastro?
-        <a href="#paralogin"> Ir para Login </a>
+        <a routerLink="/login"> Ir para Login </a>
       </p>
     </mat-card>
   </div>

@@ -9,7 +9,9 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
   public loginForm!: FormGroup;
+  public loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -21,20 +23,19 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
-  });
+    });
   }
 
   autenticar(): void {
+    this.loading = true;
     this.authService
-      .autenticacao(
-        this.loginForm.controls.username.value,
-        this.loginForm.controls.password.value
-      )
+      .autenticacao(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
       .subscribe(
         (_) => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/dashboard']);
         },
         (erro: any) => {
+          this.loading = false;
           console.log(erro);
         }
       );

@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 const ROUTES: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import(`./security/security.module`).then(
-      module => module.SecurityModule
+    path: 'dashboard',
+    loadChildren: () => import(`./crypto/dashboard/dashboard.module`).then(
+      module => module.DashboardModule
     )
   },
 
-  { path: '' , redirectTo: 'home', pathMatch: 'full'},
+  { path: '' , redirectTo: 'dashboard', pathMatch: 'full'},
 ];
 
 @NgModule({

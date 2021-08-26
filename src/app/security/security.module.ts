@@ -9,8 +9,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { SecurityRoutingModule } from './security.routing';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,13 @@ import { SecurityRoutingModule } from './security.routing';
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     SecurityRoutingModule
   ],
   exports: [
     LoginComponent,
     CadastroUsuarioComponent
   ],
-  providers: [
-    JwtHelperService
-  ]
+  providers: [AuthGuard],
 })
 export class SecurityModule { }

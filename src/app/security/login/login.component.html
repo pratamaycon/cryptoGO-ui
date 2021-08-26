@@ -27,13 +27,17 @@
           />
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="primary">
+        <button type="submit" [disabled]="loginForm.invalid || loading" mat-raised-button color="primary">
           Login
+          <mat-icon *ngIf="loading" id="alinha-loading">
+            <mat-spinner color="primary" diameter="20">
+            </mat-spinner>
+          </mat-icon>
         </button>
       </form>
       <p class="link">
         Ainda não tem cadastro?
-        <a href="#paralogin"> Cadastre-se </a>
+        <a routerLink="/cadastro-usuario"> Cadastre-se </a>
       </p>
     </mat-card>
   </div>

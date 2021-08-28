@@ -1,7 +1,7 @@
 .container {
     display: grid;
     height: 100vh;
-    grid-template-columns: 0fr 1fr 1fr;
+    grid-template-columns: 0.4fr 1fr 1fr;
     grid-template-rows: 69.99px 8fr 1fr;
     grid-template-areas: "header header header" "sidebar content content" "footer footer footer";
 }

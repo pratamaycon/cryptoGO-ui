@@ -1,44 +1,28 @@
 <div class="login-container">
-  <div class="login-content">
-    <mat-card class="card-content">
-      <h1>Login</h1>
-      <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="autenticar()">
-        <mat-form-field appearance="outline">
-          <mat-label>Usuário</mat-label>
-          <mat-icon matPrefix>person_outline</mat-icon>
-          <input
-            autofocus
-            type="text"
-            matInput
-            placeholder="Username"
-            formControlName="username"
-          />
-        </mat-form-field>
+    <div class="login-content">
+        <mat-card class="card-content">
+            <h1>Login</h1>
+            <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="autenticar()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuário</mat-label>
+                    <mat-icon matPrefix>person_outline</mat-icon>
+                    <input autofocus type="text" matInput placeholder="Username" formControlName="username" />
+                </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Senha</mat-label>
-          <mat-icon matPrefix>lock_outline</mat-icon>
-          <input
-            type="password"
-            autocomplete="false"
-            matInput
-            placeholder="Password"
-            formControlName="password"
-          />
-        </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password" />
+                </mat-form-field>
 
-        <button type="submit" [disabled]="loginForm.invalid || loading" mat-raised-button color="primary">
-          Login
-          <mat-icon *ngIf="loading" id="alinha-loading">
-            <mat-spinner color="primary" diameter="20">
-            </mat-spinner>
-          </mat-icon>
-        </button>
-      </form>
-      <p class="link">
-        Ainda não tem cadastro?
-        <a routerLink="/cadastro-usuario"> Cadastre-se </a>
-      </p>
-    </mat-card>
-  </div>
+                <button type="submit" [disabled]="loginForm.invalid || loading" mat-raised-button color="primary">
+                  Login
+                </button>
+            </form>
+            <p class="link">
+                Ainda não tem cadastro?
+                <a routerLink="/cadastro-usuario"> Cadastre-se </a>
+            </p>
+        </mat-card>
+    </div>
 </div>

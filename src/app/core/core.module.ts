@@ -7,6 +7,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { SecurityModule } from '../security/security.module';
 import { AuthService } from '../security/services/auth.service';
+import { HomeModule } from './home/home.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AuthService } from '../security/services/auth.service';
     CommonModule,
     RouterModule,
     BrowserAnimationsModule,
-    SecurityModule
+    SecurityModule,
+    HomeModule
   ],
   exports: [],
   providers: [

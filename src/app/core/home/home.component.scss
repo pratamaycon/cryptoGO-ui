@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 69px 8fr 1fr;
+    grid-template-areas: "header header header" "sidebar content content" "footer footer footer";
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: content;
+}
+
+footer {
+    width: 100%;
+    grid-area: footer;
+}

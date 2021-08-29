@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -17,11 +18,11 @@ export class LogoutService {
   }
 
   logout() {
-    return this.http.delete(this.tokenRevokeUrl, { withCredentials: true })
-      .pipe(
+    return of(
+      pipe(
         map((_) => {
           this.authService.limparAccessToken()
         })
-      );
+      ));
   }
 }

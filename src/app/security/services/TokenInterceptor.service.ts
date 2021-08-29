@@ -40,6 +40,10 @@ export class TokenInterceptor implements HttpInterceptor {
       );
     }
 
+    if (this.authService.getToken()) {
+      request = this.addToken(request, this.authService.getToken());
+    }
+
     return next.handle(request).pipe(
       catchError((error) => {
         if (

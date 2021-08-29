@@ -1,9 +1,10 @@
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from '../../models/usuario';
 import { map, take } from 'rxjs/operators';
+
+import { environment } from 'src/environments/environment';
+import { Usuario } from '../../../models/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,17 @@ export class UsuarioService {
     const body = JSON.stringify(usuario);
 
     return this.http.post(this.usuarioUrl, body, { headers }).pipe(
-      map((user: any) => {
+      map((user: Usuario) => {
+        return user;
+      }, take(1))
+    );
+  }
+
+  usuarioPorId(username: string) {
+    const headers = this.getHeaders();
+
+    return this.http.get(`${this.usuarioUrl}/${username}`, { headers }).pipe(
+      map((user: Usuario) => {
         return user;
       }, take(1))
     );
@@ -33,3 +44,4 @@ export class UsuarioService {
     return headers;
   }
 }
+

@@ -5,8 +5,8 @@
                 alt="Card image cap">
         </div>
         <div class="card-description">
-            <h3 class="card-title text-success">Carlos Souza</h3>
-            <h5 class="card-title text-secondary">carlosS@email.com</h5>
+            <h3 class="card-title text-success">{{usuario?.login}}</h3>
+            <h5 class="card-title text-secondary">{{usuario?.email}}</h5>
         </div>
         <mat-menu #appMenu="matMenu">
             <button (click)="logout()" mat-menu-item>Logout</button>

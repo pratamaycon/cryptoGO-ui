@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -21,7 +21,6 @@ import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
     MatProgressSpinnerModule,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
       multi: true

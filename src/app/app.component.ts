@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastyConfig } from 'ng2-toasty';
 import { Subject } from 'rxjs';
 import { LoaderService } from './shared/services/loader.service';
 
@@ -12,7 +13,7 @@ export class AppComponent {
 
   isLoading: Subject<boolean> = this.loader.isLoading;
 
-  constructor(private loader: LoaderService) {
-
+  constructor(private loader: LoaderService, private toastyConfig: ToastyConfig) {
+    this.toastyConfig.theme = 'bootstrap';
   }
 }

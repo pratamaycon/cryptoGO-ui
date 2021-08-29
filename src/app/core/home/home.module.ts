@@ -10,17 +10,27 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import {MatListModule} from '@angular/material/list';
 import { FooterComponent } from '../footer/footer.component';
+import { RouterModule } from '@angular/router';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
-  declarations: [HeaderComponent, HomeComponent, SidenavComponent, FooterComponent],
+  declarations: [HeaderComponent, HomeComponent, SidenavComponent, FooterComponent, UserProfileComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatMenuModule,
+    RouterModule
+  ],
+  entryComponents: [
+    UserProfileComponent
   ],
   exports: [
     HomeComponent

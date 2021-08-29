@@ -3,7 +3,6 @@ img {
 }
 
 .card-wrapper {
-    border: 2px solid gray;
     padding: .75rem;
 }
 
@@ -12,14 +11,21 @@ img {
     flex-direction: row;
     justify-content: space-around;
     max-width: 800px;
-    /* border: 2px solid gray; */
 }
 
 .card-description {
+    margin-left: 15px;
     width: 68%;
 }
 
 .card-imgage {
     width: 28%;
     max-width: 150px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

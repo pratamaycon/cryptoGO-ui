@@ -8,18 +8,20 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { SecurityModule } from '../security/security.module';
 import { AuthService } from '../security/services/auth.service';
 import { HomeModule } from './home/home.module';
+import { ToastyModule } from 'ng2-toasty';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    ToastyModule.forRoot(),
     RouterModule,
     BrowserAnimationsModule,
     SecurityModule,
     HomeModule
   ],
-  exports: [],
+  exports: [ToastyModule],
   providers: [
     AuthService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

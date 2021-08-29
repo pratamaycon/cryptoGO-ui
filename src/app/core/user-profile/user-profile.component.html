@@ -1,0 +1,19 @@
+<div class="card-wrapper">
+    <div class="card-custom">
+        <div class="card-imgage">
+            <img class="card-img rounded-circle" src="https://img3.gratispng.com/dy/c2b8ab87df50f2df6435c3d673610745/L0KzQYm3VsI0N6t1hJH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6TfF3aaVmip98b3Pscb20jfVlcZIyet54Zz3pf7B7TfF4baR0RdNBYYTkgn7wgB9vNWZnStcEOXO3RIGCVsI0NmU7TKUEMUi0QYa5Wcc5OGc8TqQBNEaxgLBu/kisspng-computer-icons-avatar-social-media-blog-font-aweso-avatar-icon-5b2e99c4409623.4643918115297806762646.png"
+                alt="Card image cap">
+        </div>
+        <div class="card-description">
+            <h3 class="card-title text-success">Carlos Souza</h3>
+            <h5 class="card-title text-secondary">carlosS@email.com</h5>
+        </div>
+        <mat-menu #appMenu="matMenu">
+            <button (click)="logout()" mat-menu-item>Logout</button>
+        </mat-menu>
+
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+</div>

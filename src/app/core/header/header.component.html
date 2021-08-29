@@ -1,4 +1,7 @@
 <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="open()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">CryptoGo</h1>
+    <div style="display: flex; width: 100%; align-items: center;">
+        <button mat-icon-button (click)="open()"><mat-icon>menu</mat-icon></button>
+        <h1 class="example-app-name">CryptoGo</h1>
+        <button mat-icon-button style="display: flex; justify-content: flex-end; width: 90%;" (click)="openDialog()"><mat-icon>manage_accounts</mat-icon></button>
+    </div>
 </mat-toolbar>

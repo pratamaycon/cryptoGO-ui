@@ -6,7 +6,7 @@ export const Animations = {
     state(
       'true',
       style({
-        width: '200px'
+        width: '200px',
       })
     ),
     state(

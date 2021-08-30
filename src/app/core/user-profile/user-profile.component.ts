@@ -31,16 +31,17 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngAfterViewInit() {
-    this.cdRef.detectChanges();
+    setTimeout(() => {
+      this.usuarioService.usuarioPorId(this.username)
+      .subscribe((user: Usuario) => {
+        this.usuario = user;
+      });
+    });
   }
 
   ngOnInit() {
     const token: JWTDeCode = this.jwtHelperService.decodeToken(this.auth.getToken());
     this.username = token.user_name;
-    this.usuarioService.usuarioPorId(this.username)
-      .subscribe(res => {
-        this.usuario = res;
-      })
   }
 
   logout() {

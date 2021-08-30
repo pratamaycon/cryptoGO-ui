@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ToastyConfig } from 'ng2-toasty';
-import { Subject } from 'rxjs';
 import { LoaderService } from './shared/services/loader.service';
 
 @Component({
@@ -11,9 +10,7 @@ import { LoaderService } from './shared/services/loader.service';
 export class AppComponent {
   title = 'cryptoGO-ui';
 
-  isLoading: Subject<boolean> = this.loader.isLoading;
-
-  constructor(private loader: LoaderService, private toastyConfig: ToastyConfig) {
+  constructor(public loaderService: LoaderService, private toastyConfig: ToastyConfig) {
     this.toastyConfig.theme = 'bootstrap';
   }
 }

@@ -24,3 +24,23 @@ footer {
     background-color: #1a237e;
     grid-area: footer;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 0fr 8fr 1fr;
+        grid-template-areas: "header header header" "sidebar content content" "footer footer footer";
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 0fr 8fr 1fr;
+        grid-template-areas: "header header header" "sidebar content content" "footer footer footer";
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

@@ -8,10 +8,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { TokenInterceptor } from './security/services/TokenInterceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
+import { LoaderInterceptorService } from './shared/interceptors/loader.interceptor';
+import { LoaderComponent } from './shared/loader/loader.component';
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,14 +23,14 @@ import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
     MatProgressSpinnerModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
+    },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
     },
   ],
   bootstrap: [AppComponent],

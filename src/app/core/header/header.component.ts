@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(UserProfileComponent, {});
+    const dialogRef = this.dialog.open(UserProfileComponent);
+
+    dialogRef.afterClosed().subscribe(_ => {
+    });
   }
 }

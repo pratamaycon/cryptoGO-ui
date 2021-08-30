@@ -1,11 +1,13 @@
-<div class="container">
+<div [ngClass]="{'container-first': !isExpanded, 'container-second': isExpanded}">
     <header>
         <app-header (change)="openMenu($event)"></app-header>
     </header>
     <nav>
         <app-sidenav [isExpanded]="isExpanded"></app-sidenav>
     </nav>
-    <main></main>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
     <footer>
         <app-footer></app-footer>
     </footer>

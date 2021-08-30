@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import { HomeRoutingModule } from './home.routing';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatListModule,
     MatDialogModule,
     MatMenuModule,
-    RouterModule
+    RouterModule,
+    HomeRoutingModule
   ],
   entryComponents: [
     UserProfileComponent

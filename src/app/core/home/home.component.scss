@@ -1,9 +1,13 @@
 .container-first {
     display: grid;
     height: 100vh;
-    grid-template-columns: 0.23fr 4fr 1fr;
+    grid-template-columns: 0.25fr 4fr 1fr;
     grid-template-rows: 69.99px 8fr 1fr;
-    grid-template-areas: "header header header" "sidebar content content" "footer footer footer";
+    grid-template-areas:
+    "header header header"
+    "sidebar content content"
+    "footer footer footer";
+    transition: all ease-in-out 2s;
 }
 
 .container-second {
@@ -11,7 +15,11 @@
     height: 100vh;
     grid-template-columns: 0.27fr 1fr 1fr;
     grid-template-rows: 69.99px 8fr 1fr;
-    grid-template-areas: "header header header" "sidebar content content" "footer footer footer";
+    grid-template-areas:
+    "header header header"
+    "sidebar content content"
+    "footer footer footer";
+    transition: all ease-in-out 2s;
 }
 
 header {
@@ -20,10 +28,12 @@ header {
 
 nav {
     grid-area: sidebar;
+    transition: all ease-in-out 0.2s;
 }
 
 main {
-    grid-area: content;
+  grid-area: content;
+  transition: all ease-in-out 0.2s;
 }
 
 footer {

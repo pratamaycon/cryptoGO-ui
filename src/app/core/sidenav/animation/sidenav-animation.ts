@@ -15,6 +15,6 @@ export const Animations = {
         width: '70px',
       })
     ),
-    transition('true <=> false', [animate('0.5s')])
+    transition('false <=> true', animate('800ms ease-out')),
   ])
 }

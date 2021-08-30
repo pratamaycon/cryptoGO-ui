@@ -8,6 +8,12 @@ const ROUTES: Routes = [
       module => module.DashboardModule
     )
   },
+  {
+    path: 'usuarios',
+    loadChildren: () => import(`./crypto/usuarios/usuarios.module`).then(
+      module => module.UsuariosModule
+    )
+  },
 
   { path: '' , redirectTo: 'dashboard', pathMatch: 'full'},
 ];

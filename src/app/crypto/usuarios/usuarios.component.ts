@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from './services/usuario.service';
-import { CadastroUsuarioComponent } from '../../security/cadastro-usuario/cadastro-usuario.component';
+import { CadastroUsuarioComponent } from '../../crypto/usuarios/cadastro-usuario/cadastro-usuario.component';
 
 @Component({
   selector: 'app-usuarios',

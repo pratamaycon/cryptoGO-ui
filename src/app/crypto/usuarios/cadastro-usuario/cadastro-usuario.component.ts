@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Usuario } from 'src/app/models/usuario';
-import { UsuarioService } from '../../crypto/usuarios/services/usuario.service';
+import { UsuarioService } from '../services/usuario.service';
 
 export interface DialogData {
   showCadastro: boolean;

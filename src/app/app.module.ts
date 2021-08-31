@@ -19,8 +19,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule,
-    MatProgressSpinnerModule,
+    CoreModule
   ],
   providers: [
     {

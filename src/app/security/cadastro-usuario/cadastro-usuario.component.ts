@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../../crypto/usuarios/services/usuario.service';
 
+export interface DialogData {
+  showCadastro: boolean;
+}
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -20,6 +24,7 @@ export class CadastroUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
   ngOnInit() {

@@ -14,6 +14,7 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
 import { SecurityRoutingModule } from './security.routing';
 import { AuthGuard } from './guard/auth.guard';
 import { LogoutService } from './services/logout.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,9 @@ import { LogoutService } from './services/logout.service';
     LoginComponent,
     CadastroUsuarioComponent
   ],
-  providers: [AuthGuard, LogoutService],
+  providers: [AuthGuard, LogoutService,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+  ],
 })
 export class SecurityModule { }

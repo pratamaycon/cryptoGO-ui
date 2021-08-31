@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UsuariosComponent } from './usuarios.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatIconModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    RouterModule
   ]
 })
 export class UsuariosModule { }

@@ -3,16 +3,24 @@
         <mat-card class="card-content">
             <h1>Login</h1>
             <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="autenticar()">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Usuário</mat-label>
                     <mat-icon matPrefix>person_outline</mat-icon>
-                    <input autofocus type="text" matInput placeholder="Username" formControlName="username" />
+                    <input autofocus type="text" matInput placeholder="Username" formControlName="username" required />
+                    <app-message
+                    [control]="loginForm.controls.username"
+                    error="required"
+                    text="Campo Obrigatório"></app-message>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Senha</mat-label>
                     <mat-icon matPrefix>lock_outline</mat-icon>
-                    <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password" />
+                    <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password" required />
+                    <app-message
+                    [control]="loginForm.controls.password"
+                    error="required"
+                    text="Campo Obrigatório"></app-message>
                 </mat-form-field>
 
                 <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">

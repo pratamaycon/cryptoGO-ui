@@ -1,14 +1,24 @@
-import { AuthGuard } from './../../security/guard/auth.guard';
-import { Routes, RouterModule } from '@angular/router';
-import { UsuariosComponent } from './usuarios.component';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AuthGuard } from './../../security/guard/auth.guard';
+import { UsuariosComponent } from './usuarios.component';
 
 const routes: Routes = [
   {
     path: '',
     component: UsuariosComponent,
     canActivate: [ AuthGuard ]
-  }
+  },
+  {
+    path: 'novo',
+    component: UsuariosComponent,
+  },
+  {
+    path: ':codigo',
+    component: UsuariosComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

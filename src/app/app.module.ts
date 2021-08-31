@@ -7,19 +7,19 @@ import { AppRoutingModule } from './app.routing';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { TokenInterceptor } from './security/services/TokenInterceptor.service';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderInterceptorService } from './shared/interceptors/loader.interceptor';
-import { LoaderComponent } from './shared/loader/loader.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
-  declarations: [AppComponent, LoaderComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [
     {

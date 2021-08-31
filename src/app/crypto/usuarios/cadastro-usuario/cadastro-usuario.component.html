@@ -3,63 +3,39 @@
     <mat-card class="card-content">
       <h1>Cadastro</h1>
       <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="cadastrar()">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Nome</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
-          <input
-            autofocus
-            type="text"
-            matInput
-            placeholder="Nome"
-            formControlName="nome"
-          />
+          <input autofocus type="text" matInput placeholder="Nome" formControlName="nome" required />
+          <app-message [control]="loginForm.controls.nome" error="required"text="Campo Obrigatório"></app-message>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Sobrenome</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
-          <input
-            type="text"
-            autocomplete="false"
-            matInput
-            placeholder="Sobrenome"
-            formControlName="sobrenome"
-          />
+          <input type="text" autocomplete="false" matInput placeholder="Sobrenome" formControlName="sobrenome" required />
+          <app-message [control]="loginForm.controls.sobrenome" error="required"text="Campo Obrigatório"></app-message>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Login</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
-          <input
-            autofocus
-            type="text"
-            matInput
-            placeholder="Login"
-            formControlName="login"
-          />
+          <input autofocus type="text" matInput placeholder="Login" formControlName="login" required />
+          <app-message [control]="loginForm.controls.login" error="required"text="Campo Obrigatório"></app-message>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Senha</mat-label>
           <mat-icon matPrefix>lock_outline</mat-icon>
-          <input
-            type="password"
-            autocomplete="false"
-            matInput
-            placeholder="Password"
-            formControlName="senha"
-          />
+          <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="senha" required />
+          <app-message [control]="loginForm.controls.senha" error="required"text="Campo Obrigatório"></app-message>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <mat-icon matPrefix>mail_outline</mat-icon>
-          <input
-            type="text"
-            autocomplete="false"
-            matInput
-            placeholder="E-mail"
-            formControlName="email"
-          />
+          <input type="text" autocomplete="false" matInput placeholder="E-mail" formControlName="email" required />
+          <app-message textCustom="E-mail não é válido" controlCustom="email"
+            [control]="loginForm.controls.email" error="required" text="Campo Obrigatório"></app-message>
         </mat-form-field>
 
         <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">

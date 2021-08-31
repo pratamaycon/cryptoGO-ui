@@ -15,6 +15,7 @@ import { SecurityRoutingModule } from './security.routing';
 import { AuthGuard } from './guard/auth.guard';
 import { LogoutService } from './services/logout.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    SecurityRoutingModule
+    SecurityRoutingModule,
+    SharedModule
   ],
   exports: [
     LoginComponent,

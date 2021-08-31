@@ -9,7 +9,7 @@ import { UsuariosComponent } from './usuarios.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [UsuariosComponent],
@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatPaginatorModule,
     MatInputModule,
+    SharedModule,
     RouterModule
   ]
 })

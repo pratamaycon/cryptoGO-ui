@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../services/usuario.service';
@@ -33,7 +35,7 @@ export class CadastroUsuarioComponent implements OnInit {
       sobrenome: ['', Validators.required],
       login: ['', Validators.required],
       senha: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required, Validators.email, this.availableEmail]
     });
   }
 
@@ -47,4 +49,13 @@ export class CadastroUsuarioComponent implements OnInit {
     })
   }
 
+  availableEmail() {
+    return (control: AbstractControl) => {
+      return control.valueChanges?.pipe(
+        map((emailExiste) =>
+          emailExiste ? emailExiste  : null
+        ),
+      );
+    };
+  }
 }

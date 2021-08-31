@@ -38,6 +38,11 @@ export class UsuarioService {
     );
   }
 
+  listarTodas(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get(this.usuarioUrl, { headers }).pipe(take(1));
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json; charset=utf-8');

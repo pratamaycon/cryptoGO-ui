@@ -1,23 +1,23 @@
 .container-first {
   display: grid;
   height: 100vh;
-  grid-template-columns: 0.4fr 4fr 1fr;
-  grid-template-rows: 69.99px 8fr 1fr;
+  grid-template-columns: 0.28fr 4fr 1fr;
+  grid-template-rows: 70px 8fr 1fr;
   grid-template-areas:
-    "header header header"
-    "sidebar content content"
-    "footer footer footer";
+  "header header header"
+  "sidebar content content"
+  "footer footer footer";
 }
 
 .container-second {
   display: grid;
   height: 100vh;
-  grid-template-columns: 0.4fr 1fr 1fr;
-  grid-template-rows: 69.99px 8fr 1fr;
+  grid-template-columns: 0.25fr 1fr 1fr;
+  grid-template-rows: 70px 8fr 1fr;
   grid-template-areas:
-    "header header header"
-    "sidebar content content"
-    "footer footer footer";
+  "header header header"
+  "sidebar content content"
+  "footer footer footer";
 }
 
 header {
@@ -39,26 +39,13 @@ footer {
   grid-area: footer;
 }
 
-@media only screen and (min-width: 320px ) and (max-width: 800px)  {
+@media only screen and (min-width: 320px) and (max-width: 1250px) {
   .container-first {
-    display: grid;
-    height: 100vh;
     grid-template-columns: auto 2fr 1fr;
     grid-template-rows: auto 8fr 1fr;
-    grid-template-areas:
-      "header header header"
-      "content content"
-      "footer footer footer";
   }
-
   .container-second {
-    display: grid;
-    height: 100vh;
     grid-template-columns: 2fr 2fr 1fr;
     grid-template-rows: auto 8fr 1fr;
-    grid-template-areas:
-      "header header header"
-      "sidebar content content"
-      "footer footer footer";
   }
 }

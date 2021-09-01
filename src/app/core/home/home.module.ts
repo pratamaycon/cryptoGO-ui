@@ -1,24 +1,29 @@
-import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HeaderComponent } from '../header/header.component';
 import { MatIconModule } from '@angular/material/icon';
-import { HomeComponent } from './home.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { SidenavComponent } from '../sidenav/sidenav.component';
 import {MatListModule} from '@angular/material/list';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
-import { HomeRoutingModule } from './home.routing';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
+import { HeaderComponent } from '../header/header.component';
+import { HomeComponent } from './home.component';
+import { SidenavComponent } from '../sidenav/sidenav.component';
+import { HomeRoutingModule } from './home.routing';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { AlterarSenhaComponent } from '../alterar-senha/alterar-senha.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [HeaderComponent, HomeComponent, SidenavComponent, FooterComponent, UserProfileComponent],
+  declarations: [HeaderComponent, HomeComponent, SidenavComponent, FooterComponent, UserProfileComponent, AlterarSenhaComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -28,11 +33,17 @@ import { HomeRoutingModule } from './home.routing';
     MatListModule,
     MatDialogModule,
     MatMenuModule,
+    MatCardModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule,
+    SharedModule,
     HomeRoutingModule
   ],
   entryComponents: [
-    UserProfileComponent
+    UserProfileComponent,
+    AlterarSenhaComponent
   ],
   exports: [
     HomeComponent

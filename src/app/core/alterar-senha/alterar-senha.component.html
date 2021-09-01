@@ -1,0 +1,26 @@
+<div class="pwChange-container">
+  <div class="pwChange-content">
+      <mat-card class="pwChangeCard-content">
+          <h1>Mudar Senha</h1>
+          <form class="formulario" [formGroup]="loginForm" novalidate (ngSubmit)="salvar()">
+              <mat-form-field appearance="fill">
+                <mat-label>Senha Atual</mat-label>
+                <mat-icon matPrefix>lock_outline</mat-icon>
+                <input type="password" autocomplete="false" matInput placeholder="Senha Atual" formControlName="pwCurrent" required />
+                <app-message [control]="loginForm.controls.pwCurrent" error="required" text="Campo Obrigatório"></app-message>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                  <mat-label>Nova Senha</mat-label>
+                  <mat-icon matPrefix>lock_outline</mat-icon>
+                  <input type="password" autocomplete="false" matInput placeholder=" Senha" formControlName="pwNew" required />
+                  <app-message [control]="loginForm.controls.pwNew" error="required" text="Campo Obrigatório"></app-message>
+              </mat-form-field>
+
+              <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">
+                Mudar Senha
+              </button>
+          </form>
+      </mat-card>
+  </div>
+</div>

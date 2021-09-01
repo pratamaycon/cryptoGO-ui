@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { LogoutService } from './../../security/services/logout.service';
 import { AuthService } from './../../security/services/auth.service';
 import { UsuarioService } from '../../crypto/usuarios/services/usuario.service';
 import { Usuario } from '../../models/usuario';
+import { AlterarSenhaComponent } from '../alterar-senha/alterar-senha.component';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class UserProfileComponent implements OnInit {
     private matDialog: MatDialog,
     private usuarioService: UsuarioService,
     private jwtHelperService: JwtHelperService,
-    public cdRef:ChangeDetectorRef
+    public dialog: MatDialog
   ) {}
 
   ngAfterViewInit() {
@@ -51,6 +52,12 @@ export class UserProfileComponent implements OnInit {
     },
     ((erro: any) => console.log(erro))
     )
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AlterarSenhaComponent);
+
+    dialogRef.afterClosed().subscribe(_ => {});
   }
 
 }

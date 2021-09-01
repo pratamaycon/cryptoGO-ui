@@ -9,6 +9,7 @@
             <h5 class="card-title text-secondary">{{usuario?.email}}</h5>
         </div>
         <mat-menu #appMenu="matMenu">
+            <button mat-menu-item (click)="openDialog()">Alterar Senha</button>
             <button (click)="logout()" mat-menu-item>Logout</button>
         </mat-menu>
 

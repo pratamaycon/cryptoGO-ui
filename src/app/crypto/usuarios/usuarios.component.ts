@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from './services/usuario.service';
-import { CadastroUsuarioComponent } from '../../crypto/usuarios/cadastro-usuario/cadastro-usuario.component';
+import { CadastroUsuarioComponent } from '../../security/cadastro-usuario/cadastro-usuario.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -57,21 +57,10 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  @Output() onEdit = new EventEmitter<any>();
-  @Output() onDelete = new EventEmitter<any>();
-
   constructor(private service: UsuarioService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.service.listarTodas().subscribe((users: Usuario[]) => {
-      this.usuarios = users;
-      this.length = users.length;
-      this.dataSource = new MatTableDataSource(this.usuarios);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
-
+    this.refresh();
     this.displayedColumns = [
       ...this.dynamicColumns.map((x) => x.columnDef),
       'actions',
@@ -87,18 +76,36 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  _onEdit(_video: any) {
-    this.onEdit.emit(_video);
+  private refresh() {
+    this.service.listarTodas().subscribe((users: Usuario[]) => {
+      this.usuarios = users;
+      this.length = users.length;
+      this.dataSource = new MatTableDataSource(this.usuarios);
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
-  _onDelete(_video: any) {
-    this.onDelete.emit(_video);
+
+  _onEdit(usuario: Usuario) {
+    this.service.signOut(usuario);
+    this.openDialog();
+  }
+  _onDelete(login: string) {
+    this.service.excluir(login).subscribe(_ => {
+      this.refresh()
+    })
   }
 
   openDialog() {
-    this.dialog.open(CadastroUsuarioComponent, {
+    const dialogRef = this.dialog.open(CadastroUsuarioComponent, {
       data: {
         showCadastro: true
       }
+    });
+
+    dialogRef.afterClosed().subscribe(_ => {
+      this.refresh();
     });
   }
 }

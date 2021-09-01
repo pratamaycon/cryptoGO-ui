@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 @Component({
@@ -6,26 +6,16 @@ import { AbstractControl } from '@angular/forms';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent implements OnChanges {
+export class MessageComponent {
 
-  @Input() public error!: string;
+  @Input() public error: string = '';
   @Input() public control!: AbstractControl;
-  @Input() public text!: string;
-
-  @Input() public controlCustom!: string;
-  @Input() public textCustom!: string;
+  @Input() public text: string = '';
 
   constructor() { }
 
-  ngOnChanges() {
-    console.log(this.controlCustom, this.textCustom);
-  }
-
   getErrorMessage() {
-
-    return this.control.hasError(this.error) ? this.text :
-    this.control.hasError(this.controlCustom) ? this.textCustom :
-      '';
+    return this.control.hasError(this.error) ? this.text : '';
   }
 
   checaErro(): boolean {

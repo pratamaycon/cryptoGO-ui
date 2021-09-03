@@ -1,26 +1,24 @@
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { LoginComponent } from './login/login.component';
+import { CadastroUsuarioComponent } from '../crypto/usuarios/cadastro-usuario/cadastro-usuario.component';
 import { SecurityRoutingModule } from './security.routing';
 import { AuthGuard } from './guard/auth.guard';
 import { LogoutService } from './services/logout.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    CadastroUsuarioComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -34,8 +32,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   exports: [
-    LoginComponent,
-    CadastroUsuarioComponent
+    LoginComponent
   ],
   providers: [AuthGuard, LogoutService,
     { provide: MAT_DIALOG_DATA, useValue: {} },

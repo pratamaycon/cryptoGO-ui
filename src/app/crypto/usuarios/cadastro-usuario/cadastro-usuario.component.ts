@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Usuario } from 'src/app/models/usuario';
-import { UsuarioService } from '../../crypto/usuarios/services/usuario.service';
+import { UsuarioService } from '../services/usuario.service';
 
 export interface DialogData {
   showCadastro: boolean;
@@ -50,7 +50,7 @@ export class CadastroUsuarioComponent implements OnInit {
       adicionar(
         new Usuario(nome.value, sobrenome.value, login.value, senha.value, email.value)
       ).subscribe((_) => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/usuarios']);
       });
     } else {
         this.usuarioService.atualizar(this.loginForm.value)

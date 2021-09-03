@@ -10,7 +10,12 @@ const routes: Routes = [
     path: '',
     component: TransactionsComponent,
     canActivate: [ AuthGuard ]
-  }
+  },
+  {
+    path: ':codigo',
+    component: TransactionsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

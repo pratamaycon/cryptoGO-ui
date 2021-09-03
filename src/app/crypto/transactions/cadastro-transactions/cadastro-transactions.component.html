@@ -1,0 +1,39 @@
+<div class="login-container">
+  <div class="login-content">
+    <mat-card class="card-content">
+      <h1>Cadastro</h1>
+      <form class="formulario" [formGroup]="loginForm" novalidate>
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <mat-icon matPrefix>person_outline</mat-icon>
+          <input autofocus type="text" matInput placeholder="Nome" formControlName="nome" required />
+        </mat-form-field>
+
+          <button mat-raised-button color="primary" (click)="addNewAddressGroup()">Adicionar Campo</button>
+          <ng-container formArrayName="criptoTransactions" *ngFor="let addressGroup of getControls(); let i = index">
+
+            <div [formGroupName]="i" >
+              <mat-form-field appearance="fill">
+                <mat-label>Data</mat-label>
+                <mat-icon matPrefix>today</mat-icon>
+                <input autofocus type="date" matInput placeholder="Data" formControlName="data" required />
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Valor Corrente</mat-label>
+                <mat-icon matPrefix>person_outline</mat-icon>
+                <input autofocus type="number" matInput placeholder="Valor Corrente" formControlName="valorCorrente" required />
+              </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="primary" (click)="deleteAddressGroup(i)" >Deletar Campo - {{i}}</button>
+          </ng-container>
+
+        <br/><br>
+        <button type="submit" (click)="cadastrar()" [disabled]="loginForm.invalid" mat-raised-button color="primary">
+          Cadastrar
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

@@ -1,9 +1,6 @@
 import {
-  AfterViewInit,
   Component,
-  EventEmitter,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,7 +9,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from './services/usuario.service';
-import { CadastroUsuarioComponent } from '../../security/cadastro-usuario/cadastro-usuario.component';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -57,7 +55,10 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  constructor(private service: UsuarioService, public dialog: MatDialog) {}
+  constructor(
+    private service: UsuarioService,
+    public dialog: MatDialog,
+    private router: Router) {}
 
   ngOnInit() {
     this.refresh();
@@ -91,6 +92,7 @@ export class UsuariosComponent implements OnInit {
     this.service.signOut(usuario);
     this.openDialog();
   }
+
   _onDelete(login: string) {
     this.service.excluir(login).subscribe(_ => {
       this.refresh()
@@ -106,6 +108,7 @@ export class UsuariosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(_ => {
       this.refresh();
+      this.router.navigate(['/usuarios']);
     });
   }
 }

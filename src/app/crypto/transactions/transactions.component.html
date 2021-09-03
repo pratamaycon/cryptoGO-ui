@@ -1,3 +1,56 @@
-<p>
-  transacoes works!
-</p>
+<div class="container-flex">
+  <mat-form-field appearance="fill">
+    <mat-label>Transações</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Bitcoin" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <a mat-button (click)="_onEdit(row)" [routerLink]="[ '/transactions', row.codigo ]">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a mat-button (click)="_onDelete(row.codigo)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container *ngFor="let dynamicColumn of dynamicColumns">
+        <ng-container matColumnDef="{{ dynamicColumn.columnDef }}">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ dynamicColumn.header }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <ng-template [ngIf]="row.criptoTransactions.length > 1" [ngIfElse]="label">
+                <div style="white-space: pre-line; margin: 10px 0;">
+                  {{ dynamicColumn.cell(row) }}
+                </div>
+            </ng-template>
+            <ng-template #label>
+              {{ dynamicColumn.cell(row) }}
+            </ng-template>
+          </td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      #paginator
+      (page)="pageChangeEvent($event)"
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </div>
+  <div class="botao-ajuste">
+    <button (click)="openDialog()" mat-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

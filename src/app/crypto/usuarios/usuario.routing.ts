@@ -11,10 +11,6 @@ const routes: Routes = [
     canActivate: [ AuthGuard ]
   },
   {
-    path: 'novo',
-    component: UsuariosComponent,
-  },
-  {
     path: ':codigo',
     component: UsuariosComponent,
     canActivate: [AuthGuard],

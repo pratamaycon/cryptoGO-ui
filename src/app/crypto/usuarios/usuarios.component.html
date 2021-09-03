@@ -13,7 +13,7 @@
           <a mat-button (click)="_onEdit(row)" [routerLink]="[ '/usuarios', row.codigo ]">
             <mat-icon>edit</mat-icon>
           </a>
-          <a mat-button (click)="_onDelete(row.login)" [routerLink]="[ '/usuarios', row.codigo ]">
+          <a mat-button (click)="_onDelete(row.login)">
             <mat-icon>delete</mat-icon>
           </a>
         </td>
@@ -41,7 +41,7 @@
       [length]="length"
       [pageIndex]="0"
       [pageSize]="10"
-      [pageSizeOptions]="[25, 50, 100, 250]">
+      [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
   <div class="botao-ajuste">

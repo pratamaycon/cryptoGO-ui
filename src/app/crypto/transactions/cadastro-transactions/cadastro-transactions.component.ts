@@ -51,7 +51,7 @@ export class CadastroTransactionsComponent implements OnInit {
 
     return criptoTransactions?.map((_) => {
       this.addNewAddressGroup(criptoTransactions)
-      return this.employees.patchValue(
+      return this.crtps.patchValue(
         criptoTransactions
       );
     })
@@ -102,7 +102,7 @@ export class CadastroTransactionsComponent implements OnInit {
     });
   }
 
-  get employees(): FormArray {
+  get crtps(): FormArray {
     return this.loginForm.get('criptoTransactions') as FormArray;
- }
+  }
 }

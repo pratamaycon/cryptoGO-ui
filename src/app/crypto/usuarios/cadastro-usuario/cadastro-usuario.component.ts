@@ -2,9 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../services/usuario.service';
+import { animate } from '@angular/animations';
 
 export interface DialogData {
   showCadastro: boolean;
@@ -26,6 +28,7 @@ export class CadastroUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router,
+    private toastyService: ToastyService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
@@ -50,12 +53,41 @@ export class CadastroUsuarioComponent implements OnInit {
       adicionar(
         new Usuario(nome.value, sobrenome.value, login.value, senha.value, email.value)
       ).subscribe((_) => {
+        this.toastyService.success({
+          title: 'Adicionado',
+          timeout: 5000,
+          msg: 'Usuário adicionado com sucesso!',
+          showClose: true,
+        });
         this.router.navigate(['/usuarios']);
-      });
+      },
+      (_) => {
+        this.toastyService.error({
+          title: 'Erro',
+          timeout: 5000,
+          msg: 'Usuário não adicionado',
+          showClose: true,
+        });
+      }
+      );
     } else {
         this.usuarioService.atualizar(this.loginForm.value)
-            .subscribe((user: Usuario) => {},
-        (erro: any) => {}
+            .subscribe((user: Usuario) => {
+              this.toastyService.success({
+                title: 'Atualizado',
+                timeout: 5000,
+                msg: 'Usuário atualizado com sucesso!',
+                showClose: true,
+              });
+            },
+        (_) => {
+          this.toastyService.error({
+            title: 'Erro',
+            timeout: 5000,
+            msg: 'Usuário não adicionado',
+            showClose: true,
+          });
+        }
         );
     }
   }

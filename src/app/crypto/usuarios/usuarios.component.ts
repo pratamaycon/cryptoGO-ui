@@ -23,6 +23,8 @@ export class UsuariosComponent implements OnInit {
   length: number = 0;
   public dataSource!: MatTableDataSource<Usuario>;
 
+  edit = false;
+
   /** Dynamically generated columns */
   dynamicColumns = [
     {
@@ -89,6 +91,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   _onEdit(usuario: Usuario) {
+    this.edit = !this.edit;
     this.service.signOut(usuario);
     this.openDialog();
   }
@@ -102,7 +105,7 @@ export class UsuariosComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(CadastroUsuarioComponent, {
       data: {
-        showCadastro: true
+        showCadastro: this.edit
       }
     });
 

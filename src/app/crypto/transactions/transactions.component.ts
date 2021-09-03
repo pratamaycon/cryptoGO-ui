@@ -27,6 +27,8 @@ export class TransactionsComponent implements OnInit {
   public pageSize = 5;
   pageSizeOptions = [5, 10, 25, 100];
 
+  edit = false;
+
   public page: any;
 
   /** Dynamically generated columns */
@@ -105,6 +107,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   _onEdit(cryptos: CryptoTipos) {
+    this.edit = !this.edit;
     this.service.signOut(cryptos);
     this.openDialog();
   }
@@ -131,7 +134,7 @@ export class TransactionsComponent implements OnInit {
       minHeight: 'auto',
       maxHeight: '690px',
       data: {
-        edicao: true,
+        edicao: this.edit,
       }
     });
 

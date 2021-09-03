@@ -9,6 +9,8 @@ import { SecurityModule } from '../security/security.module';
 import { AuthService } from '../security/services/auth.service';
 import { HomeModule } from './home/home.module';
 import { ToastyModule } from 'ng2-toasty';
+import { UsuarioService } from '../crypto/usuarios/services/usuario.service';
+import { CryptoService } from '../crypto/transactions/services/crypto.service';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { ToastyModule } from 'ng2-toasty';
   ],
   exports: [ToastyModule],
   providers: [
+    UsuarioService,
+    CryptoService,
     AuthService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService

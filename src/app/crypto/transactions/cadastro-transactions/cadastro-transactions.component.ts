@@ -58,7 +58,7 @@ export class CadastroTransactionsComponent implements OnInit {
   }
 
   cadastrar() {
-    if(!this.data.edicao) {
+    if(this.data.edicao === false) {
       const { nome, criptoTransactions } = this.loginForm.controls;
       this.cryptoService
         .adicionar(new CryptoTipos(nome.value, criptoTransactions.value))
@@ -67,7 +67,6 @@ export class CadastroTransactionsComponent implements OnInit {
           this.dialog.closeAll();
         });
     } else {
-
       this.cryptoService.atualizar(this.cryptos.codigo, this.loginForm.value)
       .subscribe((_) => {
         this.router.navigate(['/transactions']);

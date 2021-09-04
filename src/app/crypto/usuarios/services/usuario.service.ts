@@ -10,6 +10,7 @@ import { Usuario } from '../../../models/usuario';
   providedIn: 'root',
 })
 export class UsuarioService {
+
   public usuarioUrl: string;
   private authSubject$ = new BehaviorSubject<Usuario>({} as any);
 
@@ -44,7 +45,7 @@ export class UsuarioService {
     );
   }
 
-  usuarioPorId(username: string) {
+  usuarioPorLogin(username: string | undefined) {
     const headers = this.getHeaders();
 
     return this.http.get(`${this.usuarioUrl}/${username}`, { headers }).pipe(
@@ -96,9 +97,10 @@ export class UsuarioService {
       .pipe(take(1));
   }
 
-  listarTodas(): Observable<any> {
+  listarTodas(params: any): Observable<any> {
+    const {page, size} = params ? params: 0;
     const headers = this.getHeaders();
-    return this.http.get(this.usuarioUrl, { headers }).pipe(take(1));
+    return this.http.get(`${this.usuarioUrl}?page=${page ? page : 0}&size=${size ? size: 5}`, { headers }).pipe(take(1));
   }
 
   private getHeaders(): HttpHeaders {

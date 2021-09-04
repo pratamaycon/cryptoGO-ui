@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { delay, map, take } from 'rxjs/operators';
 
 import { CryptoTipos } from '../../../models/cryptoTipos';
 import { environment } from './../../../../environments/environment';
+import { CryptoThresholds } from '../../../models/cryptoThresholds';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,16 @@ export class CryptoService {
     return this.http.get(`${this.cryptoUrl}?page=${page ? page : 0}&size=${size ? size: 5}`, { headers }).pipe(take(1));
   }
 
+  cryptosPorNome(nome: string | undefined): Observable<any> {
+    const headers = this.getHeaders();
+
+    return this.http.get(`${this.cryptoUrl}/${nome}`, { headers }).pipe(
+      map((crypto: CryptoThresholds) => {
+        return crypto;
+      }, take(1))
+    );
+  }
+
   adicionar(cryptos: CryptoTipos): Observable<any> {
     const headers = this.getHeaders();
 
@@ -49,8 +60,6 @@ export class CryptoService {
 
   atualizar(codigo: number | undefined, cryptos: CryptoTipos): Observable<CryptoTipos> {
     const headers = this.getHeaders();
-    console.log(cryptos);
-
 
     const body: any = {
       "nome": cryptos.nome,

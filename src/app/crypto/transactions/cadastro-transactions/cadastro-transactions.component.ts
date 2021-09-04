@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 import { CryptoService } from '../services/crypto.service';
 import { CryptoTipos } from '../../../models/cryptoTipos';
-import { CriptoTransactions } from 'src/app/models/criptoTransactions';
+import { CryptoTransactions } from '../../../models/cryptoTransactions';
 
 export interface DialogData {
   edicao: boolean;
@@ -26,7 +26,6 @@ export interface DialogData {
 export class CadastroTransactionsComponent implements OnInit {
 
   public loginForm!: FormGroup;
-  public loading = false;
   criptoTransactions!: FormArray;
 
   cryptos!: CryptoTipos;
@@ -77,7 +76,7 @@ export class CadastroTransactionsComponent implements OnInit {
     }
   }
 
-  addNewAddressGroup(criptoTransactions?: CriptoTransactions[]) {
+  addNewAddressGroup(criptoTransactions?: CryptoTransactions[]) {
     this.criptoTransactions = this.loginForm.get('criptoTransactions') as FormArray;
     this.criptoTransactions.push(this.createItem());
     if (criptoTransactions) {

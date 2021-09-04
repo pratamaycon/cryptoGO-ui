@@ -1,9 +1,9 @@
-import { CriptoTransactions } from "./criptoTransactions";
+import { CryptoTransactions } from "./cryptoTransactions";
 
 export class CryptoTipos {
   constructor(
     public nome?: string,
-    public criptoTransactions?: CriptoTransactions[],
+    public criptoTransactions?: CryptoTransactions[],
     public dataCadastro?: Date,
     public codigo?: number,
   ){}

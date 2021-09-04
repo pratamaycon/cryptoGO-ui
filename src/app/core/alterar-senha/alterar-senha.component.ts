@@ -35,7 +35,7 @@ export class AlterarSenhaComponent implements OnInit {
     });
 
     setTimeout(() => {
-      this.usuarioService.usuarioPorId(this.username)
+      this.usuarioService.usuarioPorLogin(this.username)
       .subscribe((user: Usuario) => {
         this.codigo = user.codigo;
       });

@@ -8,7 +8,12 @@ const routes: Routes = [
     path: '',
     component: ThresholdComponent,
     canActivate: [ AuthGuard ]
-  }
+  },
+  {
+    path: ':codigo',
+    component: ThresholdComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

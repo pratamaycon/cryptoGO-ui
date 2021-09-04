@@ -1,15 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../services/usuario.service';
-import { animate } from '@angular/animations';
 
 export interface DialogData {
   showCadastro: boolean;
+  edicao: boolean;
 }
 
 @Component({
@@ -47,7 +47,7 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   cadastrar() {
-    if(!this.data.showCadastro) {
+    if(this.data.edicao === false) {
       const { nome, sobrenome, login, senha, email } = this.loginForm.controls
       this.usuarioService.
       adicionar(

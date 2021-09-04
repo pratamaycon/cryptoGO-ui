@@ -1,10 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from '../../models/usuario';
@@ -20,10 +21,15 @@ import { Router } from '@angular/router';
 export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = [];
   usuarios: Usuario[] = [];
-  length: number = 0;
-  public dataSource!: MatTableDataSource<Usuario>;
+  public  dataSource: MatTableDataSource<Usuario> = new MatTableDataSource<Usuario>();
+
+  public length = 0;
+  public pageSize = 5;
+  pageSizeOptions = [5, 10, 25, 100];
 
   edit = false;
+
+  public page: any;
 
   /** Dynamically generated columns */
   dynamicColumns = [
@@ -60,14 +66,22 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private service: UsuarioService,
     public dialog: MatDialog,
-    private router: Router) {}
+    private changeDetectorRef: ChangeDetectorRef,
+    private router: Router) {
+      this.page = {
+        page: 0,
+        size: 5
+      }
+    }
 
   ngOnInit() {
-    this.refresh();
+    this.refresh(this.page);
     this.displayedColumns = [
       ...this.dynamicColumns.map((x) => x.columnDef),
       'actions',
     ];
+    this.changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(event: Event) {
@@ -79,15 +93,18 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  private refresh() {
-    this.service.listarTodas().subscribe((users: Usuario[]) => {
-      this.usuarios = users;
-      this.length = users.length;
+  private refresh(page?: any) {
+    this.service.listarTodas(page).subscribe((users: any) => {
+      this.usuarios = users.content;
+      this.length = users.totalElements;
       this.dataSource = new MatTableDataSource(this.usuarios);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
     });
+  }
+
+  pageChangeEvent(page: PageEvent) {
+    this.page.page = page.pageIndex;
+    this.page.size = page.pageSize;
+    this.refresh(this.page)
   }
 
   _onEdit(usuario: Usuario) {
@@ -98,14 +115,19 @@ export class UsuariosComponent implements OnInit {
 
   _onDelete(login: string) {
     this.service.excluir(login).subscribe(_ => {
-      this.refresh()
+      this.refresh(this.page)
     })
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(CadastroUsuarioComponent, {
       data: {
-        showCadastro: this.edit
+        showCadastro: true,
+        edicao: this.edit,
       }
     });
 

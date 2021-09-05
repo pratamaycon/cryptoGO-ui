@@ -78,7 +78,6 @@ export class TransactionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.edit = false;
     this.refresh(this.page);
     this.displayedColumns = [
       ...this.dynamicColumns.map((x) => x.columnDef),
@@ -108,7 +107,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   _onEdit(cryptos: CryptoTipos) {
-    this.edit = true;
+    this.edit = !this.edit;
     this.service.signOut(cryptos);
     this.openDialog();
   }

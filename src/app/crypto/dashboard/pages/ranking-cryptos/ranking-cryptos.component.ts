@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,15 +12,21 @@ import { DashboardService } from '../../services/dashboard.service';
 })
 export class RankingCryptosComponent implements OnInit {
 
+  firstFormGroup!: FormGroup;
+
   cryptos: any;
   public  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
 
   displayedColumns: string[] = ['image', 'name', 'symbol', 'current_price', 'total_volume', 'price_change_percentage_24h', 'market_cap'];
 
   constructor(
+    private fb: FormBuilder,
     private service: DashboardService) {}
 
   ngOnInit() {
+    this.firstFormGroup = this.fb.group({
+      firstCtrl: ['', Validators.required]
+    });
     this.refresh();
   }
 

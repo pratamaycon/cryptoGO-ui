@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard.routing';
@@ -12,9 +13,10 @@ import { RankingCryptosComponent } from './pages/ranking-cryptos/ranking-cryptos
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ConfigurarCryptosComponent } from './pages/configurar-cryptos/configurar-cryptos.component';
+import { AvisoDialogComponent } from './pages/aviso-dialog/aviso-dialog.component';
 
 @NgModule({
-  declarations: [DashboardComponent, RankingCryptosComponent, ConfigurarCryptosComponent],
+  declarations: [DashboardComponent, RankingCryptosComponent, ConfigurarCryptosComponent, AvisoDialogComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -25,7 +27,11 @@ import { ConfigurarCryptosComponent } from './pages/configurar-cryptos/configura
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
+  ],
+  entryComponents: [
+    AvisoDialogComponent
   ],
   exports: [
     DashboardComponent

@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { CryptoThresholdsService } from './../../../threshold/services/cryptos-thresholds.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-configurar-cryptos',
@@ -62,5 +61,18 @@ export class ConfigurarCryptosComponent implements OnInit, OnChanges {
   }
 
   cadastrar() {
+    let usuario = {}
+    let criptos = {}
+    this.cryptos.forEach((el: any) => {
+      usuario = el.usuario.nome,
+      criptos = el.criptoTipos
+    });
+    const object = {
+      thresholds: this.secondFormGroup.value,
+      usuario: usuario,
+      criptoTipos: criptos,
+      confirmacao: true
+    }
+    localStorage.setItem("alerta", JSON.stringify(object))
   }
 }

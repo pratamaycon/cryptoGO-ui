@@ -41,10 +41,10 @@
 
 <br/>
 <h4>Recomendação:</h4>
-<p class="valor">Compra:
+<p matTooltip="Consiste no percentual indicado para a compra" class="valor">Compra:
   <span id="cor-verde">{{ compra | percent }}</span>
 </p>
-<p class="valor">Venda:
+<p matTooltip="Consiste no percentual indicado para a compra" class="valor">Venda:
   <span id="cor-vermelha">{{ venda | percent }}</span>
 </p>
 
@@ -58,8 +58,7 @@
       <mat-label>Venda</mat-label>
       <input type="number" matInput placeholder="Venda" formControlName="venda" required>
     </mat-form-field>
+    <br/>
+  <button mat-raised-button color="primary" matStepperPrevious>Voltar</button>
+  <button type="submit" [disabled]="secondFormGroup.invalid"  style="margin: 0 20px;" mat-raised-button color="primary" matStepperNext>Confirmar</button>
 </form>
-
-<br/>
-<button mat-raised-button color="primary" matStepperPrevious>Voltar</button>
-<button style="margin: 0 20px;" mat-raised-button color="primary" matStepperNext>Próximo</button>

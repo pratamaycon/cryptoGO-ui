@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { CryptoThresholds } from '../../../../models/cryptoThresholds';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { CryptoTipos } from '../../../../models/cryptoTipos';
 
 export interface DialogData {
   parametros: {
     usuario: string;
-    thresholds: CryptoThresholds;
+    thresholds: any;
     criptoTipos: CryptoTipos;
     confirmacao: boolean
   }
+  teveVenda: boolean;
+  teveCompra: boolean;
 }
 
 @Component({
@@ -18,9 +21,20 @@ export interface DialogData {
 })
 export class AvisoDialogComponent implements OnInit {
 
-  constructor(){}
+  valor!: number | undefined;
+  tituloOP: string = '';
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData){}
 
   ngOnInit() {
-  }
+    if (this.data.teveVenda) {
+      this.valor = this.data.parametros.thresholds.venda;
+      this.tituloOP = 'venda';
+    }
 
+    if (this.data.teveCompra) {
+      this.valor = this.data.parametros.thresholds.compra;
+      this.tituloOP = 'compra';
+    }
+  }
 }

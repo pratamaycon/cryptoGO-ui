@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+
 import { AvisoDialogComponent } from './pages/aviso-dialog/aviso-dialog.component';
 import { CryptoThresholds } from '../../models/cryptoThresholds';
 import { CryptoThresholdsService } from '../threshold/services/cryptos-thresholds.service';
@@ -51,10 +52,12 @@ export class DashboardComponent implements OnInit {
       this.dialog.open(AvisoDialogComponent, {
         minWidth: '400px',
         maxWidth: 'auto',
-        minHeight: '200px',
+        minHeight: '185px',
         maxHeight: 'auto',
         data: {
-          parametros: this.parametros
+          parametros: this.parametros,
+          teveVenda: this.cryptoThresholds.threshold_minimo === this.parametros.venda,
+          teveCompra: this.cryptoThresholds.threshold_maximo === this.parametros.compra
         }
       });
     }

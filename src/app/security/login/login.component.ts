@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastyService: ToastyService,
   ) {}
 
   ngOnInit() {
@@ -34,6 +36,12 @@ export class LoginComponent implements OnInit {
         },
         (erro: any) => {
           console.log(erro);
+          this.toastyService.error({
+            title: 'Usuário não autenticado',
+            timeout: 5000,
+            msg: erro,
+            showClose: true,
+          });
         }
       );
   }

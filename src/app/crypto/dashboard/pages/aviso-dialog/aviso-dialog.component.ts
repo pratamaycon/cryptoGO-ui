@@ -36,5 +36,6 @@ export class AvisoDialogComponent implements OnInit {
       this.valor = this.data.parametros.thresholds.compra;
       this.tituloOP = 'compra';
     }
+    localStorage.setItem("alerta", JSON.stringify(this.data));
   }
 }

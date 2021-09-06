@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 import { CryptoThresholdsService } from './../../../threshold/services/cryptos-thresholds.service';
 
@@ -27,6 +28,7 @@ export class ConfigurarCryptosComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private service: CryptoThresholdsService
   ) {}
 
@@ -74,5 +76,6 @@ export class ConfigurarCryptosComponent implements OnInit, OnChanges {
       confirmacao: true
     }
     localStorage.setItem("alerta", JSON.stringify(object))
+    this.router.navigate(['/']);
   }
 }

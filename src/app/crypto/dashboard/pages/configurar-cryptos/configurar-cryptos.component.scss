@@ -1,0 +1,50 @@
+table {
+  width: 100%;
+}
+
+h1 {
+  font-size: 30px;
+  color: #002395;
+  padding: 10px 0;
+  line-height: 50px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+h4 {
+  color: #002395;
+  padding-top: 10px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.valor {
+  color: #002395;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+
+#cor-vermelha {
+  color: red;
+}
+
+#cor-verde{
+  color: green;
+}
+
+.example-form {
+  width: 100%;
+}
+
+.example-full-width {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from './services/dashboard.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +8,34 @@ import { DashboardService } from './services/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+  isLinear = false;
+
+  selectValue: string = '';
+  maximum!: number;
+  minimum!: number;
+
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
+
+  firstForm(form: FormGroup) {
+    this.firstFormGroup = form;
+    this.isLinear = true;
+  }
+
+  selectedValue(value: string) {
+    this.selectValue = value;
+  }
+
+  minMax(event: any) {
+    this.maximum = event.max;
+    this.minimum = event.min;
   }
 
 }

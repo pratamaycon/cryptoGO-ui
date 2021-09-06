@@ -60,16 +60,15 @@
 
 <form [formGroup]="firstFormGroup">
   <mat-form-field appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <mat-select [(ngModel)]="selectedValue" name="food">
-      <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{food.viewValue}}
+    <mat-label>Selecione sua Crypto</mat-label>
+    <mat-select formControlName="crypto" (selectionChange)="onChange($event)">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let crypto of cryptos" [value]="crypto.name">
+        {{crypto.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-</mat-form-field>
-<p> Selected food: {{selectedValue}} </p>
   <div>
-    <button mat-button matStepperNext>Next</button>
+    <button [disabled]="firstFormGroup.invalid" mat-raised-button color="primary" matStepperNext>Próximo</button>
   </div>
 </form>

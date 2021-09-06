@@ -1,16 +1,14 @@
-<mat-stepper orientation="vertical">
-  <mat-step>
+<mat-stepper orientation="vertical" [linear]="isLinear">
+  <mat-step [stepControl]="firstFormGroup">
     <ng-template matStepLabel>Passo 1</ng-template>
     <ng-template matStepContent>
-      <app-ranking-cryptos></app-ranking-cryptos>
+      <app-ranking-cryptos (minMaxPercentual)="minMax($event)" (emitter)="firstForm($event)" (emitterSelected)="selectedValue($event)"></app-ranking-cryptos>
     </ng-template>
   </mat-step>
-  <mat-step>
+  <mat-step [stepControl]="secondFormGroup">
     <ng-template matStepLabel>Passo 2</ng-template>
     <ng-template matStepContent>
-      <p>This content was also rendered lazily</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+      <app-configurar-cryptos [venda]="minimum" [compra]="maximum" [selectedValue]="selectValue"></app-configurar-cryptos>
     </ng-template>
   </mat-step>
   <mat-step>

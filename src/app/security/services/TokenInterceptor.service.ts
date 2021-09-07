@@ -33,8 +33,6 @@ export class TokenInterceptor implements HttpInterceptor {
             )
           ) {
             this.router.navigate(['/login']);
-          } else if (erro.status === 401) {
-            this.router.navigate(['/nao-autorizado']);
           }
           return throwError(erro);
         })

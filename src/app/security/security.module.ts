@@ -15,11 +15,10 @@ import { AuthGuard } from './guard/auth.guard';
 import { LogoutService } from './services/logout.service';
 import { SharedModule } from '../shared/shared.module';
 import { ErroComponent } from '../core/erro/erro.component';
-import { NaoAutorizadoComponent } from './nao-autorizado/nao-autorizado.component';
 
 @NgModule({
   declarations: [
-    LoginComponent, ErroComponent, NaoAutorizadoComponent
+    LoginComponent, ErroComponent
   ],
   imports: [
     CommonModule,

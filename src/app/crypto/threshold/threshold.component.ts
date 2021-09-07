@@ -128,6 +128,8 @@ export class ThresholdComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(CadastroThresholdComponent, {
+      minHeight: 'auto',
+      maxHeight: '500px',
       data: {
         edicao: this.edit
       }

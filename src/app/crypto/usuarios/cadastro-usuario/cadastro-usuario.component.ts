@@ -84,7 +84,7 @@ export class CadastroUsuarioComponent implements OnInit {
           this.toastyService.error({
             title: 'Erro',
             timeout: 5000,
-            msg: 'Usuário não adicionado',
+            msg: 'Usuário não atualizado',
             showClose: true,
           });
         }

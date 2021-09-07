@@ -6,8 +6,8 @@ const ROUTES: Routes = [
     path: '',
     loadChildren: () => import(`./core/home/home.module`).then(
       module => module.HomeModule
-    )
-  }
+    ),
+  },
 ];
 
 @NgModule({

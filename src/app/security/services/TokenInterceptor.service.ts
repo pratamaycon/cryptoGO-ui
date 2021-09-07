@@ -1,5 +1,4 @@
 import {
-  HttpEvent,
   HttpHandler,
   HttpHeaders,
   HttpInterceptor,
@@ -32,7 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
               'Cannot convert access token to JSON'
             )
           ) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/nao-autorizado']);
           }
 
           return throwError(erro);

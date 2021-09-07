@@ -9,10 +9,10 @@ import {
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-
 import { CryptoService } from '../services/crypto.service';
 import { CryptoTipos } from '../../../models/cryptoTipos';
 import { CryptoTransactions } from '../../../models/cryptoTransactions';
+import { ToastyService } from 'ng2-toasty';
 
 export interface DialogData {
   edicao: boolean;
@@ -34,6 +34,7 @@ export class CadastroTransactionsComponent implements OnInit {
     private fb: FormBuilder,
     private cryptoService: CryptoService,
     private router: Router,
+    private toastyService: ToastyService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
@@ -62,16 +63,44 @@ export class CadastroTransactionsComponent implements OnInit {
       this.cryptoService
         .adicionar(new CryptoTipos(nome.value, criptoTransactions.value))
         .subscribe((_) => {
+          this.toastyService.success({
+            title: 'Adicionado',
+            timeout: 5000,
+            msg: 'CryptoTipos adicionado com sucesso!',
+            showClose: true,
+          });
           this.router.navigate(['/transactions']);
           this.dialog.closeAll();
-        });
+        },
+          (_) => {
+            this.toastyService.error({
+              title: 'Erro',
+              timeout: 5000,
+              msg: 'CryptoTipos não adicionado',
+              showClose: true,
+            });
+          }
+          );
     } else {
       this.cryptoService.atualizar(this.cryptos.codigo, this.loginForm.value)
       .subscribe((_) => {
+        this.toastyService.success({
+          title: 'Atualizado',
+          timeout: 5000,
+          msg: 'CryptoTipos atualizado com sucesso!',
+          showClose: true,
+        });
         this.router.navigate(['/transactions']);
         this.dialog.closeAll();
       },
-        (erro: any) => {}
+        (_) => {
+          this.toastyService.error({
+            title: 'Erro',
+            timeout: 5000,
+            msg: 'CryptoTipos não atualizado',
+            showClose: true,
+          });
+        }
         );
     }
   }

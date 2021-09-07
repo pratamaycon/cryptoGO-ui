@@ -2,10 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 
 import { CryptoThresholds } from '../../../models/cryptoThresholds';
 import { CryptoThresholdsService } from '../services/cryptos-thresholds.service';
-
 
 export interface DialogData {
   edicao: boolean;
@@ -29,6 +29,7 @@ export class CadastroThresholdComponent implements OnInit {
     private service: CryptoThresholdsService,
     private router: Router,
     public dialog: MatDialog,
+    private toastyService: ToastyService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
@@ -67,18 +68,43 @@ export class CadastroThresholdComponent implements OnInit {
         .adicionar(
           new CryptoThresholds(threshold_minimo.value, threshold_maximo.value, data_atualizacao.value, usuario.value, criptoTipos.value))
         .subscribe((_) => {
+          this.toastyService.success({
+            title: 'Adicionado',
+            timeout: 5000,
+            msg: 'Threshold adicionado com sucesso!',
+            showClose: true,
+          });
           this.router.navigate(['/transactions']);
           this.dialog.closeAll();
+        }, (_) => {
+          this.toastyService.error({
+            title: 'Erro',
+            timeout: 5000,
+            msg: 'Threshold não adicionado',
+            showClose: true,
+          });
         });
     }
     else {
       this.service.atualizar(this.cryptoThresholds.codigo, this.loginForm.value)
       .subscribe((_) => {
+        this.toastyService.success({
+          title: 'Atualizado',
+          timeout: 5000,
+          msg: 'Threshold atualizado com sucesso!',
+          showClose: true,
+        });
         this.router.navigate(['/transactions']);
         this.dialog.closeAll();
       },
-        (erro: any) => {}
-        );
+        (_) => {
+          this.toastyService.error({
+            title: 'Erro',
+            timeout: 5000,
+            msg: 'Threshold não atualizado',
+            showClose: true,
+          });
+        });
     }
   }
 }

@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
+
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -31,9 +32,10 @@ export class TokenInterceptor implements HttpInterceptor {
               'Cannot convert access token to JSON'
             )
           ) {
+            this.router.navigate(['/login']);
+          } else if (erro.status === 401) {
             this.router.navigate(['/nao-autorizado']);
           }
-
           return throwError(erro);
         })
       );

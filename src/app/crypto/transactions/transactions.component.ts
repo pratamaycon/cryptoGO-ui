@@ -8,6 +8,7 @@ import { CryptoTipos } from './../../models/cryptoTipos';
 import { CryptoService } from './services/crypto.service';
 import { CadastroTransactionsComponent } from './cadastro-transactions/cadastro-transactions.component';
 import { Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-transactions',
@@ -68,6 +69,7 @@ export class TransactionsComponent implements OnInit {
   constructor(
     private service: CryptoService,
     public dialog: MatDialog,
+    private toastyService: ToastyService,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef
   ) {
@@ -115,6 +117,19 @@ export class TransactionsComponent implements OnInit {
   _onDelete(codigo: number) {
     this.service.excluir(codigo).subscribe(_ => {
       this.refresh(this.page)
+      this.toastyService.success({
+        title: 'Excluída',
+        timeout: 5000,
+        msg: 'CryptoTransactions foi excluída com sucesso',
+        showClose: true,
+      });
+    }, (_) => {
+      this.toastyService.error({
+        title: 'Excluida',
+        timeout: 5000,
+        msg: 'CryptoTransactions não foi excluída',
+        showClose: true,
+      });
     })
   }
 

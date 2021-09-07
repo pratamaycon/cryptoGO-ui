@@ -9,6 +9,7 @@ import { CryptoThresholds } from '../../models/cryptoThresholds';
 import { CadastroThresholdComponent } from './cadastro-threshold/cadastro-threshold.component';
 import { CryptoThresholdsService } from './services/cryptos-thresholds.service';
 import { Usuario } from '../../models/usuario';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-threshold',
@@ -69,6 +70,7 @@ export class ThresholdComponent implements OnInit {
   constructor(
     private service: CryptoThresholdsService,
     public dialog: MatDialog,
+    private toastyService: ToastyService,
     private changeDetectorRef: ChangeDetectorRef,
     private router: Router) {
       this.page = {
@@ -119,6 +121,19 @@ export class ThresholdComponent implements OnInit {
   _onDelete(codigo: number) {
     this.service.excluir(codigo).subscribe(_ => {
       this.refresh(this.page)
+      this.toastyService.success({
+        title: 'Excluido',
+        timeout: 5000,
+        msg: 'Threshold foi excluído com sucesso',
+        showClose: true,
+      });
+    }, (_) => {
+      this.toastyService.error({
+        title: 'Excluido',
+        timeout: 5000,
+        msg: 'Threshold não foi excluído',
+        showClose: true,
+      });
     })
   }
 

@@ -12,6 +12,7 @@ import { Usuario } from '../../models/usuario';
 import { UsuarioService } from './services/usuario.service';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-usuarios',
@@ -66,6 +67,7 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private service: UsuarioService,
     public dialog: MatDialog,
+    private toastyService: ToastyService,
     private changeDetectorRef: ChangeDetectorRef,
     private router: Router) {
       this.page = {
@@ -116,6 +118,19 @@ export class UsuariosComponent implements OnInit {
   _onDelete(login: string) {
     this.service.excluir(login).subscribe(_ => {
       this.refresh(this.page)
+      this.toastyService.success({
+        title: 'Excluída',
+        timeout: 5000,
+        msg: 'Usuário foi excluído com sucesso',
+        showClose: true,
+      });
+    }, (_) => {
+      this.toastyService.error({
+        title: 'Excluida',
+        timeout: 5000,
+        msg: 'Usuário não foi excluído',
+        showClose: true,
+      });
     })
   }
 

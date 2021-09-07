@@ -9,6 +9,7 @@ import { AuthService } from './../../security/services/auth.service';
 import { UsuarioService } from '../../crypto/usuarios/services/usuario.service';
 import { Usuario } from '../../models/usuario';
 import { AlterarSenhaComponent } from '../alterar-senha/alterar-senha.component';
+import { ToastyService } from 'ng2-toasty';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class UserProfileComponent implements OnInit {
   public username: string = '';
   public usuario!: Usuario;
 
+  public url = '../../../assets/img/kisspng-user.png';
+
   constructor(
     public auth: AuthService,
     private logoutService: LogoutService,
@@ -28,6 +31,7 @@ export class UserProfileComponent implements OnInit {
     private matDialog: MatDialog,
     private usuarioService: UsuarioService,
     private jwtHelperService: JwtHelperService,
+    private toastyService: ToastyService,
     public dialog: MatDialog
   ) {}
 
@@ -50,7 +54,15 @@ export class UserProfileComponent implements OnInit {
       this.matDialog.closeAll();
       this.router.navigate(['/login'])
     },
-    ((erro: any) => console.log(erro))
+    ((erro: any) => {
+      console.log(erro);
+      this.toastyService.error({
+        title: 'Logout',
+        timeout: 5000,
+        msg: erro,
+        showClose: true,
+      });
+    })
     )
   }
 

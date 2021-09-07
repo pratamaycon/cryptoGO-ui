@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErroComponent implements OnInit {
 
+  url = '../../../assets/img/404-error.gif';
+
   constructor() { }
 
   ngOnInit() {

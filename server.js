@@ -1,12 +1,14 @@
+//Install express server
 const express = require('express');
-const path = require('path');
-const nomeApp = process.env.npm_package_name;
+
 const app = express();
 
-app.use(express.static(`/dist/${nomeApp}`));
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/crypto-go-ui'));
 
-app.get('/*', (req, res) => {
-res.sendFile(path.join(`/dist/${nomeApp}/index.html`));
-});
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/crypto-go-ui/'}),
+);
 
+// Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
